@@ -1,28 +1,30 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Button } from 'react-native'
+import { View, Text, TextInput, StyleSheet, Button } from 'react-native'
 import Section from '../atoms/section.atom';
-import useSesionStore from '../../store/sesion.statate';
+import useSessionStore from '../../store/sesion.statate';
+import useValidateSession from "../../hooks/useValidateSession.hook";
 
 const LoginPage = ({ navigation }) => {
-  const { singIn, setLoading } = useSesionStore();
-  const [email, setEmail] = React.useState('');
-  const [password, setPass] = React.useState('');
+  const { email, setEmail, password, setPass, isActiveBtn, handleSubmit } = useValidateSession();
+  const { singIn, setLoading } = useSessionStore();
   console.log('Login Page')
 
-  const onPress = () => {
+  const onPress = async () => {
     setLoading(true)
     console.log({ email, password })
-    singIn({
-      userName: 'Gael',
-      fullName: 'Cristian Val',
-      email,
-    });
-    setTimeout(() => {
-      setLoading(false)
-    }, 2000);
+    try {
+      const session = await handleSubmit(email, password );
+      if(!!session)  singIn({
+        userName: session.userName,
+        fullName: session.fullName,
+        email,
+      });
+    }catch(err) {
+     alert(err);
+    } finally {
+      setLoading(false);
+    }
   }
-
-  const isActiveBtn = React.useMemo(() => email !== '' && password !== '', [email, password]);
 
   return (<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
     <Section title={'Iniciar sesion'}>

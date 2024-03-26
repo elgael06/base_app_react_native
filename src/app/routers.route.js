@@ -3,7 +3,7 @@ import { Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomePage, LoginPage, SplashPage} from '../components/pages';
-import useSesionStore from '../store/sesion.statate';
+import useSessionStore from '../store/sesion.statate';
 import {optionsMenu} from "../utils/options-menu";
 
 
@@ -11,7 +11,7 @@ export const Stack = createNativeStackNavigator();
 
 
 const RoutesApp = () => {
-  const { userName, isActive, isLoading, setLoading, singOut } = useSesionStore();
+  const { userName, isActive, isLoading, setLoading, singOut } = useSessionStore();
   const titleApp = React.useMemo(() => {
     return userName !== '' ? `Hola ${userName}` : 'App de prueba';
   }, [userName]);

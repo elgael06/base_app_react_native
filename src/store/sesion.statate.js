@@ -1,7 +1,7 @@
 
 import { create } from 'zustand'
 
-const useSesionStore = create((set) => ({
+const useSessionStore = create((set) => ({
   isActive: false,
   userName: '',
   fullName: '',
@@ -12,4 +12,4 @@ const useSesionStore = create((set) => ({
   setLoading: (isLoading) => set((state) => ({ isLoading })),
 }));
 
-export default useSesionStore;
+export default useSessionStore;

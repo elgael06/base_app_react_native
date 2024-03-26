@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native'
-import useSesionStore from '../../store/sesion.statate';
+import useSessionStore from '../../store/sesion.statate';
 import {Section} from "../atoms";
 
 const HomePage = ({ navigation }) => {
-  const { fullName } = useSesionStore();
+  const { fullName } = useSessionStore();
   console.log('home page')
 
     const handleMenu = (type = '') => {
