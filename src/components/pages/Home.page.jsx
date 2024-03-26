@@ -4,7 +4,7 @@ import useSessionStore from '../../store/sesion.statate';
 import {Section} from "../atoms";
 
 const HomePage = ({ navigation }) => {
-  const { fullName } = useSessionStore();
+  const { fullName, email } = useSessionStore();
   console.log('home page')
 
     const handleMenu = (type = '') => {
@@ -21,6 +21,7 @@ const HomePage = ({ navigation }) => {
     paddingTop: 50,
   }}>
     <Text>Usuario: {fullName}</Text>
+    <Text>Email: {email}</Text>
     <FlatList
       data={[
         {
